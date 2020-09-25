@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>苏的blog</title>
+  
+  <subtitle>空有姑苏台上月,如西子镜照江城</subtitle>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2020-09-25T08:13:22.057Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>Su</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>嗨，骚年</title>
+    <link href="http://example.com/2020/09/25/hello-world/"/>
+    <id>http://example.com/2020/09/25/hello-world/</id>
+    <published>2020-09-25T02:56:59.580Z</published>
+    <updated>2020-09-25T08:13:22.057Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;欢迎到来，目前只有一篇文章&lt;br&gt;&lt;img src=&quot;/2020/09/25/hello-world/1.jpg&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
