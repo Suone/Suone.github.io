@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-09-25T08:13:22.057Z</updated>
+  <updated>2020-09-27T08:44:18.444Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,22 +17,72 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>嗨，骚年</title>
-    <link href="http://example.com/2020/09/25/hello-world/"/>
-    <id>http://example.com/2020/09/25/hello-world/</id>
-    <published>2020-09-25T02:56:59.580Z</published>
-    <updated>2020-09-25T08:13:22.057Z</updated>
+    <title>vue-Router4.0</title>
+    <link href="http://example.com/2020/09/27/vue-Router4/"/>
+    <id>http://example.com/2020/09/27/vue-Router4/</id>
+    <published>2020-09-27T08:13:27.000Z</published>
+    <updated>2020-09-27T08:44:18.444Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;欢迎到来，目前只有一篇文章&lt;br&gt;&lt;img src=&quot;/2020/09/25/hello-world/1.jpg&quot;</summary>
+    <summary type="html">&lt;p&gt;Vue Router 4.0 提供了 Vue 3 支持，并有许多突破性的变化。下面是应用于vue3项目的使用方法&lt;/p&gt;
+&lt;h2 id=&quot;下面逐一介绍&quot;&gt;&lt;a href=&quot;#下面逐一介绍&quot; class=&quot;headerlink&quot;</summary>
         
       
     
     
+    
+    <category term="vue-Router4.0" scheme="http://example.com/categories/vue-Router4-0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vuex4.0</title>
+    <link href="http://example.com/2020/09/27/vuex4/"/>
+    <id>http://example.com/2020/09/27/vuex4/</id>
+    <published>2020-09-27T07:46:49.000Z</published>
+    <updated>2020-09-27T08:44:13.562Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Vuex 4.0 提供了 Vue 3 支持，并有许多突破性的变化。下面是应用于vue3项目的模块化配置及使用方法&lt;/p&gt;
+&lt;h2 id=&quot;下面逐一介绍&quot;&gt;&lt;a href=&quot;#下面逐一介绍&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="vuex4.0" scheme="http://example.com/categories/vuex4-0/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>vue3</title>
+    <link href="http://example.com/2020/09/25/vue3/"/>
+    <id>http://example.com/2020/09/25/vue3/</id>
+    <published>2020-09-25T03:43:24.000Z</published>
+    <updated>2020-09-27T07:43:15.737Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;vue3.0 侧重于解决代码组织与逻辑复用问题&lt;br&gt;目前，我们使用的是“options”API 构建组件。 为了将逻辑添加到Vue组件中，我们填充（options）属性，如data、methods、computed等。</summary>
+        
+      
+    
+    
+    
+    <category term="vue3" scheme="http://example.com/categories/vue3/"/>
     
     
   </entry>
