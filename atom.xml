@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2020-09-27T08:44:18.444Z</updated>
+  <updated>2020-09-29T09:23:09.690Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vue-other</title>
+    <link href="http://example.com/2020/09/29/vue-other/"/>
+    <id>http://example.com/2020/09/29/vue-other/</id>
+    <published>2020-09-29T08:59:45.000Z</published>
+    <updated>2020-09-29T09:23:09.690Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;接下来介绍vue3的配置全局 property，父子孙之间的数据传递，ref绑定使用&lt;/p&gt;
+&lt;h2 id=&quot;下面逐一介绍&quot;&gt;&lt;a href=&quot;#下面逐一介绍&quot; class=&quot;headerlink&quot; title=&quot;下面逐一介绍&quot;&gt;&lt;/a&gt;下面逐一介绍&lt;/h2&gt;&lt;h4</summary>
+        
+      
+    
+    
+    
+    <category term="vue相关" scheme="http://example.com/categories/vue%E7%9B%B8%E5%85%B3/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>vue-Router4.0</title>

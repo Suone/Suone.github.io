@@ -155,6 +155,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/29/vue-other/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.webp">
+      <meta itemprop="name" content="Su">
+      <meta itemprop="description" content="人非要经历一番不同平时的劫难才能脱胎换骨,成为真正能解决问题的人">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="苏">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/29/vue-other/" class="post-title-link" itemprop="url">vue-other</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-29 16:59:45 / 修改时间：17:23:09" itemprop="dateCreated datePublished" datetime="2020-09-29T16:59:45+08:00">2020-09-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue%E7%9B%B8%E5%85%B3/" itemprop="url" rel="index"><span itemprop="name">vue相关</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>接下来介绍vue3的配置全局 property，父子孙之间的数据传递，ref绑定使用</p>
+<h2 id="下面逐一介绍"><a href="#下面逐一介绍" class="headerlink" title="下面逐一介绍"></a>下面逐一介绍</h2><h4 id="全局-property的配置"><a href="#全局-property的配置" class="headerlink" title="全局 property的配置"></a>全局 property的配置</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.ts</span></span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&quot;./App.vue&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&quot;./router&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">&quot;./store&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> scripts <span class="keyword">from</span> <span class="string">&quot;./scripts&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> app = createApp(App);</span><br><span class="line"><span class="comment">// 全局 property</span></span><br><span class="line">app.config.globalProperties.$scripts = scripts;</span><br><span class="line">app.config.globalProperties.http = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;i am http&#x27;</span>)</span><br><span class="line">&#125;;</span><br><span class="line">app.use(store);</span><br><span class="line">app.use(router);</span><br><span class="line">app.mount(<span class="string">&quot;#app&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// demo.vue</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;p&gt;&#123;&#123; $scripts.zObject.isEmpty(&#123;&#125;) &#125;&#125;&lt;/p&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"><span class="comment">// 使用typescript ctx会报错</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; getCurrentInstance, defineComponent &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="comment">// ctx 里包含上下文内容</span></span><br><span class="line">    <span class="keyword">const</span> &#123; ctx &#125; = getCurrentInstance();</span><br><span class="line">    ctx.http();</span><br><span class="line">    <span class="built_in">console</span>.log(ctx.$scripts.zObject.isEmpty(&#123;&#125;));</span><br><span class="line">    <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="父传子或孙的数据传递"><a href="#父传子或孙的数据传递" class="headerlink" title="父传子或孙的数据传递"></a>父传子或孙的数据传递</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// demo.vue</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;xx&gt;&lt;/xx&gt;</span><br><span class="line">  &lt;span @click=<span class="string">&quot;add&quot;</span>&gt;添加&lt;/span&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; reactive, toRefs, defineComponent, defineAsyncComponent, provide &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> xx = defineAsyncComponent(<span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="string">&quot;@/components/xx.vue&quot;</span>));</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    xx</span><br><span class="line">  &#125;,</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="comment">// 响应数据</span></span><br><span class="line">    <span class="keyword">const</span> obj = reactive(&#123;</span><br><span class="line">      a: <span class="number">1</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      obj.a++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 响应数据</span></span><br><span class="line">    provide(<span class="string">&quot;customVal&quot;</span>, toRefs(obj).a);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      ...toRefs(obj),</span><br><span class="line">      add</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// xx.vue</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;span&gt;sss&#123;&#123; val &#125;&#125;&lt;/span&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script lang=<span class="string">&quot;ts&quot;</span>&gt;</span><br><span class="line"><span class="keyword">import</span> &#123;  inject, defineComponent &#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> val = inject(<span class="string">&quot;customVal&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> &#123; val &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="ref绑定使用"><a href="#ref绑定使用" class="headerlink" title="ref绑定使用"></a>ref绑定使用</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// demo.vue</span></span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;p ref=<span class="string">&quot;p1&quot;</span>&gt;a&#123;&#123; a &#125;&#125;&lt;/p&gt;</span><br><span class="line">    &lt;div v-<span class="keyword">for</span>=<span class="string">&quot;(item, index) of arr&quot;</span> :key=<span class="string">&quot;index&quot;</span> :ref=<span class="string">&quot;setArr&quot;</span>&gt;&#123;&#123; item &#125;&#125;&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"><span class="comment">// 使用typescript ctx会报错</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  getCurrentInstance,</span><br><span class="line">  reactive,</span><br><span class="line">  toRefs,</span><br><span class="line">  defineComponent,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&quot;vue&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineComponent(&#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="comment">// 响应数据</span></span><br><span class="line">    <span class="keyword">const</span> obj = reactive(&#123;</span><br><span class="line">      arr: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>],</span><br><span class="line">      arr2: []</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 通过绑定方法把其绑定成数组</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">setArr</span>(<span class="params">el</span>) </span>&#123;</span><br><span class="line">      obj.arr2.push(el);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">const</span> &#123; ctx &#125; = getCurrentInstance();</span><br><span class="line">    <span class="comment">// 挂载后</span></span><br><span class="line">    onMounted(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="comment">// p 和div的第三个字变成red</span></span><br><span class="line">      ctx.$refs.p1.style.color = <span class="string">&quot;red&quot;</span>;</span><br><span class="line">      obj.arr2[<span class="number">2</span>].style.color = <span class="string">&quot;red&quot;</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      ...toRefs(obj),</span><br><span class="line">      setArr</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/27/vue-Router4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -443,14 +519,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
